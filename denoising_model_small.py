@@ -137,7 +137,7 @@ class Conv(nn.Module):
 class ConditionalModel(nn.Module):
     def __init__(self, feats=64):
         super(ConditionalModel, self).__init__()
-
+        self.attention = nn.MultiheadAttention(512, num_heads=8)
         self.stream_x = nn.ModuleList([
             nn.Sequential(Conv1d(1, feats, 9, padding=4, padding_mode='reflect'),
                           nn.LeakyReLU(0.2)),
